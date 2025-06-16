@@ -27,7 +27,7 @@ const Header = ({ currentUser, setCurrentUser }) => {
               }`}
             >
               <Image
-                src="/avatars/anas.png" 
+                src="/avatars/Anas.png" 
                 alt="Anas" 
                 className="w-8 h-8 rounded-full border-2 border-blue-800 shadow-sm ring-2 ring-blue-900/20"
               />
@@ -42,7 +42,7 @@ const Header = ({ currentUser, setCurrentUser }) => {
               }`}
             >
               <Image
-                src="/avatars/doha.png" 
+                src="/avatars/Doha.png" 
                 alt="Doha" 
                 className="w-8 h-8 rounded-full border-2 border-purple-400 shadow-sm ring-2 ring-purple-500/20"
               />

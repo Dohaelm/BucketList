@@ -71,7 +71,7 @@ const PlanForm = ({ onSubmit, onClose, author }) => {
                 }`}
               />
               <div>
-                <span className="font-semibold text-slate-200">{author}s Wish</span>
+                <span className="font-semibold text-slate-200">{author} Plans to : </span>
                 <span className="ml-2">{author === 'Anas' ? '💙' : '💜'}</span>
                 <div className="text-sm text-slate-400">Upon a star</div>
               </div>
@@ -79,12 +79,12 @@ const PlanForm = ({ onSubmit, onClose, author }) => {
 
             {/* Title */}
             <div className="mb-4">
-              <label className="block text-slate-300 mb-2 font-medium">Wish Title</label>
+              <label className="block text-slate-300 mb-2 font-medium">Plan Title</label>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="What do you wish for together..."
+                placeholder="What do you plan together..."
                 className="w-full p-4 bg-slate-700/50 border-2 border-slate-600/50 rounded-2xl focus:border-amber-500/50 focus:outline-none text-slate-200 placeholder-slate-400 backdrop-blur-sm transition-all hover:border-slate-500/50"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && e.ctrlKey) handleSubmit();
