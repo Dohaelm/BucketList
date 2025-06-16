@@ -27,15 +27,15 @@ const PlanCard = ({ plan, onAchieve, onDelete }) => {
       } transition-all hover:shadow-3xl border border-slate-700/50 group hover:bg-slate-800/70`}>
         <div className="flex justify-between items-start mb-4">
           <div className="flex items-center gap-3">
-            <img 
-              src={`/avatars/${plan.author?.toLowerCase() || 'default'}.png`}
-              alt={plan.author || 'User'}
-              className={`w-12 h-12 rounded-full border-3 shadow-lg ${
-                plan.author === 'Anas' 
-                  ? 'border-blue-500 ring-4 ring-blue-500/20' 
-                  : 'border-purple-500 ring-4 ring-purple-500/20'
-              }`}
-            />
+            <Image 
+                            src={author === 'Anas' ? '/avatars/Anas.png' : '/avatars/Doha.png'}
+                            alt={author}
+                            className={`w-12 h-12 rounded-full border-3 shadow-lg ${
+                              author === 'Anas' 
+                                ? 'border-blue-500 ring-4 ring-blue-500/20' 
+                                : 'border-purple-500 ring-4 ring-purple-500/20'
+                            }`}
+                              />
             <div>
               <span className="font-semibold text-slate-200 text-lg">{plan.author}</span>
               <span className="ml-2 text-lg">{plan.author === 'Anas' ? '💙' : '💜'}</span>
