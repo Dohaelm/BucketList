@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import { Heart, Plus, Camera, Check, X, Upload, Image } from 'lucide-react';
+import { Heart, Plus, Camera, Check, X, Upload } from 'lucide-react';
+import Image from 'next/image'
 import PhotoUploadModal from './photoUploadModal';
 
 const PlanCard = ({ plan, onAchieve, onDelete }) => {

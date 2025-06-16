@@ -1,6 +1,7 @@
 // Header Component 
 'use client';
-import { Heart, Plus, Camera, Check, X, Upload, Image } from 'lucide-react';
+import { Heart, Plus, Camera, Check, X, Upload } from 'lucide-react';
+import Image from 'next/image'
 import React, { useState } from 'react';
 
 const Header = ({ currentUser, setCurrentUser }) => {

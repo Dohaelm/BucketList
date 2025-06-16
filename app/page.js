@@ -1,7 +1,10 @@
 'use client';
 
+
+import Image from 'next/image'
+
 import React, { useState, useEffect } from 'react';
-import { Heart, Plus, Camera, Check, X, Upload, Image } from 'lucide-react';
+import { Heart, Plus, Camera, Check, X, Upload } from 'lucide-react';
 import Header from './components/header';
 import PlanList from './components/planList';
 import PlanForm from './components/planform';
