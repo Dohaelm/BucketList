@@ -76,18 +76,15 @@ const PhotoAlbum = ({ plans, onClose }) => {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <div className="relative">
-                      <img 
-                        src={`/avatars/${plan.author.toLowerCase()}.png`}
-                        alt={plan.author}
-                        className={`w-6 h-6 rounded-full border-2 ${
-                          plan.author === 'Anas' 
-                            ? 'border-blue-400 ring-2 ring-blue-400/20' 
-                            : 'border-pink-400 ring-2 ring-pink-400/20'
-                        }`}
-                        onError={(e) => {
-                          e.target.src = '/avatars/default.png';
-                        }}
-                      />
+                       <Image 
+                                                  src={plan.author === 'Anas' ? '/avatars/Anas.png' : '/avatars/Doha.png'}
+                                                  alt={plan.author}
+                                                  className={`w-12 h-12 rounded-full border-3 shadow-lg ${
+                                                    plan.author === 'Anas' 
+                                                      ? 'border-blue-500 ring-4 ring-blue-500/20' 
+                                                      : 'border-purple-500 ring-4 ring-purple-500/20'
+                                                  }`}
+                                                    />
                       <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full ${
                         plan.author === 'Anas' ? 'bg-blue-400' : 'bg-pink-400'
                       } animate-pulse`}></div>
