@@ -227,13 +227,13 @@ const addPlan = async (planData) => {
         {/* Hero Section */}
         <div className="text-center mb-8">
           <div className="flex justify-center items-center gap-4 mb-6">
-            <img 
+            <Image 
               src="/avatars/anas.png" 
               alt="Anas" 
               className="w-20 h-20 rounded-full border-4 border-blue-900 shadow-2xl ring-4 ring-blue-900/20"
             />
             <Heart className="text-amber-400 animate-pulse" size={40} />
-            <img 
+            <Image 
               src="/avatars/doha.png" 
               alt="Doha" 
               className="w-20 h-20 rounded-full border-4 border-purple-500 shadow-2xl ring-4 ring-purple-500/20"

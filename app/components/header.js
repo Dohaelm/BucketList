@@ -26,7 +26,7 @@ const Header = ({ currentUser, setCurrentUser }) => {
                   : 'text-blue-400 hover:bg-slate-700/50 hover:text-blue-300'
               }`}
             >
-              <img 
+              <Image
                 src="/avatars/anas.png" 
                 alt="Anas" 
                 className="w-8 h-8 rounded-full border-2 border-blue-800 shadow-sm ring-2 ring-blue-900/20"
@@ -41,7 +41,7 @@ const Header = ({ currentUser, setCurrentUser }) => {
                   : 'text-purple-400 hover:bg-slate-700/50 hover:text-purple-300'
               }`}
             >
-              <img 
+              <Image
                 src="/avatars/doha.png" 
                 alt="Doha" 
                 className="w-8 h-8 rounded-full border-2 border-purple-400 shadow-sm ring-2 ring-purple-500/20"
