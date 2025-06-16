@@ -28,10 +28,10 @@ const PlanCard = ({ plan, onAchieve, onDelete }) => {
         <div className="flex justify-between items-start mb-4">
           <div className="flex items-center gap-3">
             <Image 
-                            src={author === 'Anas' ? '/avatars/Anas.png' : '/avatars/Doha.png'}
-                            alt={author}
+                            src={plan.author === 'Anas' ? '/avatars/Anas.png' : '/avatars/Doha.png'}
+                            alt={plan.author}
                             className={`w-12 h-12 rounded-full border-3 shadow-lg ${
-                              author === 'Anas' 
+                              plan.author === 'Anas' 
                                 ? 'border-blue-500 ring-4 ring-blue-500/20' 
                                 : 'border-purple-500 ring-4 ring-purple-500/20'
                             }`}
