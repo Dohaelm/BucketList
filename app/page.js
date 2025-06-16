@@ -227,28 +227,32 @@ const addPlan = async (planData) => {
       
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8 max-w-4xl relative z-10">
-        {/* Hero Section */}
-        <div className="text-center mb-8">
-          <div className="flex justify-center items-center gap-4 mb-6">
-            <Image 
-              src="/avatars/Anas.png" 
-              alt="Anas" 
-              className="w-20 h-20 rounded-full border-4 border-blue-900 shadow-2xl ring-4 ring-blue-900/20"
-            />
-            <Heart className="text-amber-400 animate-pulse" size={40} />
-            <Image 
-              src="/avatars/Doha.png" 
-              alt="Doha" 
-              className="w-20 h-20 rounded-full border-4 border-purple-500 shadow-2xl ring-4 ring-purple-500/20"
-            />
+     
+          <div className="text-center mb-8">
+            <div className="flex justify-center items-center gap-4 mb-6">
+              <Image 
+                src="/avatars/Anas.png" 
+                alt="Anas" 
+                width={80}
+                height={80}
+                className="w-20 h-20 rounded-full border-4 border-blue-900 shadow-2xl ring-4 ring-blue-900/20"
+              />
+              <Heart className="text-amber-400 animate-pulse" size={40} />
+              <Image 
+                src="/avatars/Doha.png" 
+                alt="Doha"
+                width={80} 
+                height={80}
+                className="w-20 h-20 rounded-full border-4 border-purple-500 shadow-2xl ring-4 ring-purple-500/20"
+              />
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-gradient-to-r from-amber-300 via-purple-300 to-blue-300 bg-clip-text mb-4" style={{fontFamily: 'Dancing Script, cursive'}}>
+              Constellation of Dreams ✨
+            </h1>
+            <p className="text-slate-300 text-lg"> Filling the bucket is just as important as emptying it!</p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-gradient-to-r from-amber-300 via-purple-300 to-blue-300 bg-clip-text mb-4" style={{fontFamily: 'Dancing Script, cursive'}}>
-            Constellation of Dreams ✨
-          </h1>
-          <p className="text-slate-300 text-lg"> Filling the bucket is just as important as emptying it!</p>
-        </div>
 
-        {/* Error Message */}
+          {/* Error Message */}
         {error && (
           <div className="bg-red-900/50 border border-red-500/50 text-red-300 px-4 py-3 rounded-lg mb-6 flex justify-between items-center backdrop-blur-sm">
             <span>{error}</span>

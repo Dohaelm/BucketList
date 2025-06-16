@@ -79,6 +79,8 @@ const PhotoAlbum = ({ plans, onClose }) => {
                        <Image 
                                                   src={plan.author === 'Anas' ? '/avatars/Anas.png' : '/avatars/Doha.png'}
                                                   alt={plan.author}
+                                                   width={80}
+                                                   height={80}
                                                   className={`w-12 h-12 rounded-full border-3 shadow-lg ${
                                                     plan.author === 'Anas' 
                                                       ? 'border-blue-500 ring-4 ring-blue-500/20' 

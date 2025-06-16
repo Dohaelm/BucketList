@@ -65,6 +65,8 @@ const PlanForm = ({ onSubmit, onClose, author }) => {
                   <Image 
                 src={author === 'Anas' ? '/avatars/Anas.png' : '/avatars/Doha.png'}
                 alt={author}
+                 width={80}
+                height={80}
                 className={`w-12 h-12 rounded-full border-3 shadow-lg ${
                   author === 'Anas' 
                     ? 'border-blue-500 ring-4 ring-blue-500/20' 
