@@ -1,23 +1,40 @@
-// Header Component 
 'use client';
-import { Heart, Plus, Camera, Check, X, Upload } from 'lucide-react';
-import Image from 'next/image'
 import React, { useState } from 'react';
+import Image from 'next/image';
+import { LogOut, User } from 'lucide-react';
+import { useAuth } from '@/lib/authProvider';
 
 const Header = ({ currentUser, setCurrentUser }) => {
+  const { logout } = useAuth();
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+    window.location.href = '/';
+  };
+
+  const confirmLogout = () => {
+    setShowLogoutConfirm(true);
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutConfirm(false);
+  };
 
   return (
-    <header className="bg-slate-900/80 backdrop-blur-md shadow-2xl border-b border-slate-700/50">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="flex items-center gap-4">
-          <Heart className="text-amber-400 animate-pulse" size={32} />
-          <span className="text-xl font-semibold text-transparent bg-gradient-to-r from-amber-300 to-purple-300 bg-clip-text">
-           Our Bucket List 
-          </span>
-        </div>
-        
-        <div className="flex items-center gap-4">
-          <span className="text-slate-300">User :</span>
+    <>
+      <header className="relative z-20 bg-slate-900/70 backdrop-blur-md border-b border-slate-800/50 shadow-2xl">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <div className="text-2xl">🌟</div>
+            <h1 className="text-xl font-bold text-transparent bg-gradient-to-r from-amber-300 to-purple-300 bg-clip-text">
+              Our Bucket List
+            </h1>
+          </div>
+          
+          <div className="flex items-center gap-4">
+            {/* User Selector */}
+            <span className="text-slate-300">User :</span>
           <div className="flex bg-slate-800/50 rounded-full p-1 border border-slate-700/50 backdrop-blur-sm">
             <button
               onClick={() => setCurrentUser('Anas')}
@@ -54,9 +71,51 @@ const Header = ({ currentUser, setCurrentUser }) => {
               Doha 💜
             </button>
           </div>
+
+            {/* Logout Button - Subtle and Small */}
+            <button
+              onClick={confirmLogout}
+              className="bg-slate-700/50 hover:bg-slate-600/60 text-slate-300 hover:text-slate-200 px-3 py-2 rounded-lg flex items-center gap-2 transition-all border border-slate-600/30 hover:border-slate-500/50 backdrop-blur-sm"
+              title="Logout"
+            >
+              <LogOut size={14} />
+              <span className="hidden sm:inline text-sm">Logout</span>
+            </button>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-800 rounded-2xl p-8 max-w-md w-full border border-slate-700 shadow-2xl">
+            <div className="text-center">
+              <div className="text-4xl mb-4">🌙</div>
+              <h3 className="text-xl font-bold text-white mb-4">Leave the Constellation?</h3>
+              <p className="text-slate-300 mb-6">
+                Are you sure you want to logout? You will need to enter the cosmic password again to return.
+              </p>
+              
+              <div className="flex gap-4 justify-center">
+                <button
+                  onClick={cancelLogout}
+                  className="bg-slate-700 hover:bg-slate-600 text-white px-6 py-3 rounded-xl transition-all"
+                >
+                  Stay Among the Stars
+                </button>
+                <button
+                  onClick={handleLogout}
+                  className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl transition-all flex items-center gap-2"
+                >
+                  <LogOut size={16} />
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
