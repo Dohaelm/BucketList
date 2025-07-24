@@ -6,6 +6,7 @@ import PhotoUploadModal from './photoUploadModal';
 
 const PlanCard = ({ plan, onAchieve, onDelete }) => {
   const [showPhotoModal, setShowPhotoModal] = useState(false);
+  const [showMemory, setShowMemory] = useState(false);
 
   const handleMarkAsDone = () => {
     if (plan.status === 'unachieved') {
@@ -28,16 +29,16 @@ const PlanCard = ({ plan, onAchieve, onDelete }) => {
         <div className="flex justify-between items-start mb-4">
           <div className="flex items-center gap-3">
             <Image 
-                            src={plan.author === 'Anas' ? '/avatars/Anas.png' : '/avatars/Doha.png'}
-                            alt={plan.author}
-                             width={80}
-                height={80}
-                            className={`w-12 h-12 rounded-full border-3 shadow-lg ${
-                              plan.author === 'Anas' 
-                                ? 'border-blue-500 ring-4 ring-blue-500/20' 
-                                : 'border-purple-500 ring-4 ring-purple-500/20'
-                            }`}
-                              />
+              src={plan.author === 'Anas' ? '/avatars/Anas.png' : '/avatars/Doha.png'}
+              alt={plan.author}
+              width={80}
+              height={80}
+              className={`w-12 h-12 rounded-full border-3 shadow-lg ${
+                plan.author === 'Anas' 
+                  ? 'border-blue-500 ring-4 ring-blue-500/20' 
+                  : 'border-purple-500 ring-4 ring-purple-500/20'
+              }`}
+            />
             <div>
               <span className="font-semibold text-slate-200 text-lg">{plan.author}</span>
               <span className="ml-2 text-lg">{plan.author === 'Anas' ? '💙' : '💜'}</span>
@@ -75,11 +76,13 @@ const PlanCard = ({ plan, onAchieve, onDelete }) => {
 
         {plan.image && (
           <div className="mb-4">
-            <img 
-              src={plan.image} 
-              alt="Achievement memory"
-              className="w-full h-48 object-cover rounded-2xl shadow-lg border border-slate-600/50 hover:border-amber-500/50 transition-all"
-            />
+            <button
+              onClick={() => setShowMemory(true)}
+              className="text-sm px-4 py-2 rounded-lg bg-slate-700 text-white hover:bg-amber-500 transition-all flex items-center gap-2"
+            >
+              <Camera size={16} />
+              Show Memory
+            </button>
           </div>
         )}
 
@@ -104,6 +107,33 @@ const PlanCard = ({ plan, onAchieve, onDelete }) => {
           )}
         </div>
       </div>
+
+      {/* Centered Image Modal - Moved outside of card container */}
+      {showMemory && plan.image && (
+        <div 
+          className="fixed inset-0 backdrop-blur-md flex items-center justify-center cursor-pointer"
+          style={{ zIndex: 999999 }}
+          onClick={() => setShowMemory(false)}
+        >
+          <div className="relative bg-slate-800 rounded-xl p-4 shadow-2xl border border-amber-500/30">
+            <img 
+              src={plan.image} 
+              alt="Achievement memory"
+              className="w-auto h-auto max-w-lg max-h-96 rounded-lg shadow-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+            
+            {/* Close button */}
+            <button
+              onClick={() => setShowMemory(false)}
+              className="absolute -top-3 -right-3 bg-black/20 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold transition-all hover:scale-110 shadow-lg z-10 backdrop-blur-sm"
+              aria-label="Close image"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
 
       {showPhotoModal && (
         <PhotoUploadModal

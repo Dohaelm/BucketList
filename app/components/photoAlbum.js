@@ -1,14 +1,21 @@
 'use client';
 import { Heart, Plus, Camera, Check, X, Upload } from 'lucide-react';
-import Image from 'next/image'
 import React, { useState } from 'react';
 
 // Photo Album Component
 const PhotoAlbum = ({ plans, onClose }) => {
+  const [showMemory, setShowMemory] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  
   // Filter plans that have images and are achieved
   const achievedPlansWithImages = plans.filter(plan => 
     plan.image && plan.status === 'achieved'
   );
+
+  const handleImageClick = (imageUrl) => {
+    setSelectedImage(imageUrl);
+    setShowMemory(true);
+  };
 
   return (
     <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-lg flex items-center justify-center p-4 z-50">
@@ -48,7 +55,7 @@ const PhotoAlbum = ({ plans, onClose }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-auto h-full pb-8 scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-800">
             {achievedPlansWithImages.map(plan => (
               <div key={plan.id} className="group bg-slate-800/60 backdrop-blur-sm border border-slate-700/30 rounded-2xl p-4 shadow-lg hover:shadow-xl hover:shadow-purple-900/20 transition-all duration-300 hover:scale-[1.02] hover:border-amber-400/30">
-                <div className="relative mb-3 overflow-hidden rounded-xl">
+                <div className="relative mb-3 overflow-hidden rounded-xl cursor-pointer" onClick={() => handleImageClick(plan.image)}>
                   <img 
                     src={plan.image} 
                     alt={plan.title || "Starlit Memory"}
@@ -76,17 +83,15 @@ const PhotoAlbum = ({ plans, onClose }) => {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <div className="relative">
-                       <Image 
-                                                  src={plan.author === 'Anas' ? '/avatars/Anas.png' : '/avatars/Doha.png'}
-                                                  alt={plan.author}
-                                                   width={80}
-                                                   height={80}
-                                                  className={`w-12 h-12 rounded-full border-3 shadow-lg ${
-                                                    plan.author === 'Anas' 
-                                                      ? 'border-blue-500 ring-4 ring-blue-500/20' 
-                                                      : 'border-purple-500 ring-4 ring-purple-500/20'
-                                                  }`}
-                                                    />
+                      <img 
+                        src={plan.author === 'Anas' ? '/avatars/Anas.png' : '/avatars/Doha.png'}
+                        alt={plan.author}
+                        className={`w-12 h-12 rounded-full border-2 shadow-lg object-cover ${
+                          plan.author === 'Anas' 
+                            ? 'border-blue-500 ring-4 ring-blue-500/20' 
+                            : 'border-purple-500 ring-4 ring-purple-500/20'
+                        }`}
+                      />
                       <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full ${
                         plan.author === 'Anas' ? 'bg-blue-400' : 'bg-pink-400'
                       } animate-pulse`}></div>
@@ -103,6 +108,32 @@ const PhotoAlbum = ({ plans, onClose }) => {
           </div>
         )}
       </div>
+
+      {/* Image Modal */}
+      {showMemory && selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black/50 backdrop-blur-xl flex items-center justify-center cursor-pointer z-[9999] p-4"
+          onClick={() => setShowMemory(false)}
+        >
+          <div className="relative bg-slate-800 rounded-xl p-3 shadow-2xl border border-amber-500/30 max-w-2xl w-full">
+            <img 
+              src={selectedImage} 
+              alt="Achievement memory"
+              className="w-full h-auto max-h-[60vh] object-contain rounded-lg shadow-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+            
+            {/* Close button */}
+            <button
+              onClick={() => setShowMemory(false)}
+              className="absolute -top-3 -right-3 bg-black/20 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold transition-all hover:scale-110 shadow-lg z-10 backdrop-blur-sm"
+              aria-label="Close image"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
 
       <style jsx>{`
         .scrollbar-thin::-webkit-scrollbar {
